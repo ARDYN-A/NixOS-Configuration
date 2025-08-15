@@ -95,6 +95,7 @@
     packages = with pkgs; [
     #  thunderbird
     ];
+    shell = pkgs.fish;
   };
 
   # Install firefox.
@@ -106,15 +107,22 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # CLI Apps
     vim
     wget
     curl
-    gh #Github CLI Tool
+    gh
+    zig
+    fastfetch
 
+    # Desktop Appls
     ghostty
     helix
     spotify
     discord
+    heroic
+    obs-studio
+    obsidian
   ];
 
   programs.git = {
