@@ -40,7 +40,6 @@
     loader.timeout = 0;
   };
 
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -79,6 +78,7 @@
         enable = true;
         wayland.enable = true;
         settings.General.DisplayServer = "wayland";
+        theme = "sddm-astronaut-theme";
       };
     };
   };
@@ -124,8 +124,23 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
-
+  programs.firefox = {
+    enable = true;
+    policies = {
+      ExtensionSettings = with builtins;
+      let extension = shortId: uuid: {
+        name = uuid;
+        value = {
+          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+      };
+      in listToAttrs [
+        (extension "ublock-origin" "uBlock0@raymondhill.net")
+      ];
+    };
+  };
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -136,10 +151,24 @@
     vim
     wget
     curl
+    busybox
     gh
     zig
     fastfetch
 
+    # LSP
+    nixd
+    zls
+    taplo
+    typescript-language-server
+
+    # Themes
+    layan-kde
+    sddm-astronaut
+    kdePackages.qtsvg
+    kdePackages.qtvirtualkeyboard
+    kdePackages.qtmultimedia
+    
     # Desktop Appls
     ghostty
     helix
@@ -154,7 +183,10 @@
     enable = true;
   };
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    shellInit = "fastfetch";
+  };
 
   hardware.logitech.wireless = {
     enable = true;
