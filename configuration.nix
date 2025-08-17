@@ -78,7 +78,7 @@
         enable = true;
         wayland.enable = true;
         settings.General.DisplayServer = "wayland";
-        theme = "sddm-astronaut-theme";
+        theme = "WhiteSur-dark";
       };
     };
   };
@@ -163,11 +163,20 @@
     typescript-language-server
 
     # Themes
-    layan-kde
-    sddm-astronaut
+    kdePackages.qtbase
+    kdePackages.qtwayland
+    kdePackages.qttools
+    kdePackages.kwindowsystem
     kdePackages.qtsvg
     kdePackages.qtvirtualkeyboard
     kdePackages.qtmultimedia
+    kdePackages.plasma-browser-integration
+    kdePackages.plasma-integration
+    #where-is-my-sddm-theme
+    whitesur-kde
+    whitesur-cursors
+    whitesur-icon-theme
+    whitesur-gtk-theme
     
     # Desktop Appls
     ghostty
