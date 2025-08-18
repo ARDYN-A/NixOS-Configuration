@@ -186,6 +186,8 @@
     heroic
     obs-studio
     obsidian
+
+    wine64
   ];
 
   programs.git = {
